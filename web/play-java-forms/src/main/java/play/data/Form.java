@@ -587,7 +587,7 @@ public class Form<T> {
     }
 
     Map<String, String> jsonData = new HashMap<>();
-    int maxMemoryBuffer = config.getInt("play.http.parser.maxMemoryBuffer");
+    long maxMemoryBuffer = config.getMemorySize("play.http.parser.maxMemoryBuffer").toBytes();
     if (request.body().asJson() != null) {
       jsonData =
           play.libs.Scala.asJava(
