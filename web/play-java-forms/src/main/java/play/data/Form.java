@@ -90,6 +90,8 @@ public class Form<T> {
 
   private static final String INVALID_MSG_KEY = "error.invalid";
 
+  protected static final long FROM_JSON_MAX_CHARS = Form$.MODULE$.FromJsonMaxChars();
+
   /** Defines a form element's display name. */
   @Retention(RUNTIME)
   @Target({ANNOTATION_TYPE})
@@ -735,11 +737,9 @@ public class Form<T> {
   public Form<T> bind(Lang lang, TypedMap attrs, JsonNode data, String... allowedFields) {
     logger.warn(
         "Binding json field from form with a hardcoded max size of {} bytes. This is deprecated. Use bind(Lang, TypedMap, JsonNode, Int, String...) instead.",
-        FromJsonMaxChars);
-    return bind(lang, attrs, data, FromJsonMaxChars, allowedFields);
+        FROM_JSON_MAX_CHARS);
+    return bind(lang, attrs, data, FROM_JSON_MAX_CHARS, allowedFields);
   }
-
-  private long FromJsonMaxChars = Form$.MODULE$.FromJsonMaxChars();
 
   /**
    * Binds Json data to this form - that is, handles form submission.
