@@ -29,7 +29,12 @@ class FormUtilsSpec extends Specification {
           "g" -> false,
         ),
         "h" -> "an-h",
-        "i" -> 30
+        "i" -> 30,
+        "j" -> Json.arr(
+          Json.arr(
+            40
+          )
+        )
       )
 
       val expected = Seq(
@@ -42,7 +47,8 @@ class FormUtilsSpec extends Specification {
         "e.f"      -> "an-f",
         "e.g"      -> "false",
         "h"        -> "an-h",
-        "i"        -> "30"
+        "i"        -> "30",
+        "j[0][0]"  -> "40",
       )
 
       val map = FormUtils.fromJson(json, 1000)
