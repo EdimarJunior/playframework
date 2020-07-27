@@ -374,7 +374,7 @@ object Form {
    * JSON. Defaults to 100k which is the default of parser.maxMemoryBuffer
    */
   @InternalApi
-  val FromJsonMaxChars = 102400
+  val FromJsonMaxChars: Long = 102400
 
   /**
    * Creates a new form from a mapping.
@@ -424,14 +424,14 @@ object Form {
 }
 
 private[data] object FormUtils {
-  def fromJson(js: JsValue, maxChars: Int): Map[String, String] = doFromJson(FromJsonRoot(js), Map.empty, 0, maxChars)
+  def fromJson(js: JsValue, maxChars: Long): Map[String, String] = doFromJson(FromJsonRoot(js), Map.empty, 0, maxChars)
 
   @annotation.tailrec
   private def doFromJson(
       context: FromJsonContext,
       form: Map[String, String],
       cumulativeChars: Int,
-      maxChars: Int
+      maxChars: Long
   ): Map[String, String] = context match {
     case FromJsonTerm              => form
     case ctx: FromJsonContextValue =>
@@ -1065,5 +1065,5 @@ trait ObjectMapping {
   }
 }
 
-case class FormJsonExpansionTooLarge(limit: Int)
+case class FormJsonExpansionTooLarge(limit: Long)
     extends RuntimeException(s"Binding form from JSON exceeds form expansion limit of $limit")

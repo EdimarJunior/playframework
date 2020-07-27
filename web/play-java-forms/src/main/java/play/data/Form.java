@@ -739,7 +739,7 @@ public class Form<T> {
     return bind(lang, attrs, data, FromJsonMaxChars, allowedFields);
   }
 
-  private int FromJsonMaxChars = Form$.MODULE$.FromJsonMaxChars();
+  private long FromJsonMaxChars = Form$.MODULE$.FromJsonMaxChars();
 
   /**
    * Binds Json data to this form - that is, handles form submission.
@@ -760,7 +760,7 @@ public class Form<T> {
    *     2.8.3.
    */
   public Form<T> bind(
-      Lang lang, TypedMap attrs, JsonNode data, int maxChars, String... allowedFields) {
+      Lang lang, TypedMap attrs, JsonNode data, long maxChars, String... allowedFields) {
     return bind(
         lang,
         attrs,

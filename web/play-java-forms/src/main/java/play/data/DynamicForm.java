@@ -284,7 +284,7 @@ public class DynamicForm extends Form<DynamicForm.Dynamic> {
 
   @Override
   public DynamicForm bind(
-      Lang lang, TypedMap attrs, JsonNode data, int maxChars, String... allowedFields) {
+      Lang lang, TypedMap attrs, JsonNode data, long maxChars, String... allowedFields) {
     return bind(
         lang,
         attrs,
